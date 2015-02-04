@@ -4,7 +4,7 @@ import Topic from '../../../models/topic';
 
 
 export default Ember.Route.extend({
-  titleToken: function(){
+  titleToken: function() {
     return this.controller.get('model.title');
   },
 
@@ -27,5 +27,16 @@ export default Ember.Route.extend({
     var slug = this.paramsFor('discourse-sites.site').slug;
     var currentSite = sites.findBy('slug', slug);
     controller.set('currentSite', currentSite);
+
+    var siteController = this.controllerFor('discourse-sites.site');
+    var viewedTopics = siteController.get('viewedTopics') || [];
+    viewedTopics.pushObject({
+      name: topic.title,
+      route: "discourse-sites.site.topic",
+      params:  model.id
+      
+    });
+    siteController.set('viewedTopics', viewedTopics);
+    siteController.set('activeTabNavName', topic.title);
   }
 });

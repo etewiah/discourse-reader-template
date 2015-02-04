@@ -24,6 +24,10 @@ export default Ember.Route.extend({
 
     var sites = this.modelFor('discourse-sites');
     var currentSite = sites.findBy('slug', currentSiteSlug);
-    controller.set('currentSite',currentSite);
+    controller.set('currentSite', currentSite);
+
+    // below for tab-nav
+    var siteController = this.controllerFor('discourse-sites.site');
+    siteController.set('activeTabNavName', 'Conversations');
   }
 });

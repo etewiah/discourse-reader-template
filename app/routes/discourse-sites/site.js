@@ -11,9 +11,10 @@ export default Ember.Route.extend({
     }, function(error) {});
     return topics;
   },
-  // setupController: function(controller, model) {
-  //   controller.set('model', model);
-  //   var currentSiteSlug = this.paramsFor('discourse-sites.site').slug;
-  //   controller.set('currentSiteSlug', currentSiteSlug);
-  // }
+  setupController: function(controller, model) {
+    controller.set('model', model);
+    var currentSiteSlug = this.paramsFor('discourse-sites.site').slug;
+    // passed to tab-nave:
+    controller.set('currentSiteSlug', currentSiteSlug);
+  }
 });
